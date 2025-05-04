@@ -25,7 +25,7 @@ Steve is a voice-activated virtual assistant built using Python. It can perform 
 
 ---
 
-🚀 How to Run
+## 🚀 How to Run
 
 python steve.py
 
@@ -40,7 +40,7 @@ Followed by any command like:
 
 ---
 
-🧠 Example Commands
+## 🧠 Example Commands
 Feature	Say...
 - Open website	"Open YouTube"
 - Time/Day	"What is the time"

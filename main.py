@@ -6,6 +6,7 @@ import requests
 import datetime
 import random
 import songs
+import operations
 
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
@@ -27,20 +28,7 @@ def tell_time():
     time = datetime.datetime.now().strftime("%I:%M %p")
     speak(f"The current time is {time}.")
 
-def calculator(query):
-    try:
-        result = eval(query)
-        speak(f"The result is {result}")
-    except:
-        speak("Sorry, I couldn't calculate that.")
 
-def roll_dice():
-    number = random.randint(1, 6)
-    speak(f"You rolled a {number}")
-
-def flip_coin():
-    result = random.choice(["Heads", "Tails"])
-    speak(f"It's {result}")
 
 def processCommand(c):
     if "open google" in c.lower():
@@ -64,21 +52,24 @@ def processCommand(c):
         tell_time()
 
     elif "roll a dice" in c or "roll dice" in c:
-        roll_dice()
+        operations.roll_dice()
 
-    elif "flip a coin" in c or "toss a coin" in c:
-        flip_coin()
+    elif "flip a coin" in c:
+        operations.flip_coin()
 
     elif "calculate" in c:
         expression = c.replace("calculate", "").strip()
-        calculator(expression)
+        operations.calculator(expression)
 
     elif c.lower().startswith("play"):
         song = c.lower().split(" ")[1]
         link = songs.music[song]
         webbrowser.open(link)
 
-    elif "stop steve" in c or "exit" in c or "quit" in c:
+    elif "check palindrome" in c:
+        operations.isPalindrome()
+
+    elif "exit" in c:
         speak("Goodbye!")
         return False
     else:
